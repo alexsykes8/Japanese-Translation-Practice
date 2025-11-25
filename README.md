@@ -41,7 +41,7 @@ The Python backend server must be running for the extension to work.
 **Prerequisites:**
 
 *   Python 3.x
-*   Your own Japanese texts (e.g., `.txt` files from Aozora Bunko) placed in the `book_files` directory. It is also setup to process the Japanese tsv sample sentence file that can be downloaded from https://tatoeba.org/en/downloads. I'd recommend using this if you can, but on my machine it took two days to process the whole file so keep that in mind. 
+*   Your own Japanese texts (e.g., `.txt` files from Aozora Bunko) placed in a `book_files` directory. It is also setup to process the Japanese tsv sample sentence file that can be downloaded from https://tatoeba.org/en/downloads. I'd recommend using this if you can, but on my machine it took two days to process the whole file so keep that in mind. 
 
 **Steps:**
 
