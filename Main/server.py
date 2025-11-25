@@ -3,7 +3,6 @@ import os
 from flask import Flask, request, jsonify
 from flask_cors import CORS
 
-# Ensure we can import modules from the Main package
 current_dir = os.path.dirname(os.path.abspath(__file__))
 parent_dir = os.path.dirname(current_dir)
 if parent_dir not in sys.path:
@@ -15,8 +14,6 @@ from Main.Model.sudachipi import sentence_breakdown
 app = Flask(__name__)
 CORS(app)  # Allow the extension to communicate with this server
 
-# Initialize User with a default level (will be updated per request)
-# We load the heavy dictionary data once at startup
 print("Loading dictionaries... please wait.")
 user = User("N5")
 print("Server ready.")
@@ -29,13 +26,10 @@ def hover_analyze():
     offset = data.get('offset', 0)
     user_level = data.get('level', 'N5')
 
-    # 1. Update User Level dynamically for this request
     if user.user_level != user_level:
         user.user_level = user_level
         user.JLPT_lists.set_user_level(user_level)
 
-    # 2. Find the specific word under the cursor using Sudachi
-    # We reconstruct the token positions to find which one covers the offset
     sb = sentence_breakdown()
     sb.set_sentence(text_chunk)
 
@@ -56,7 +50,6 @@ def hover_analyze():
     if not target_word:
         return jsonify({'found': False})
 
-    # 3. Search for sentences using existing logic
     result = user.search_for_word(target_word)
 
     if not result:
@@ -64,7 +57,6 @@ def hover_analyze():
 
     definitions, sentences = result
 
-    # Process sentences to include "difficult words" definitions
     processed_sentences = []
     for s_data in sentences:  # Limit to top 5 to save bandwidth
         sent_text = s_data[0].strip()

@@ -3,7 +3,6 @@ let currentSentenceIndex = 0;
 let currentData = null;
 let debounceTimer = null;
 
-// 1. Create the popup element
 function createPopup() {
     if (document.getElementById('jlpt-sentence-popup')) return; // Avoid duplicates
     popup = document.createElement('div');
@@ -16,7 +15,6 @@ function createPopup() {
     console.log("JLPT Extension: Popup created");
 }
 
-// 2. Update HTML content
 function updatePopupContent(data) {
     if (!data.sentences || data.sentences.length === 0) {
         popup.innerHTML = `<div class="header"><strong>${data.word}</strong>: No sentences found.</div>`;
@@ -57,7 +55,6 @@ function updatePopupContent(data) {
         ${difficultWordsHtml}
     `;
 
-    // Re-attach listeners for navigation
     document.getElementById('prev-btn').addEventListener('click', (e) => {
         e.stopPropagation();
         if (currentSentenceIndex > 0) {
@@ -73,7 +70,6 @@ function updatePopupContent(data) {
         }
     });
 
-    // Attach listener for reveal button
     const revealBtn = document.getElementById('reveal-def-btn');
     const defContent = popup.querySelector('.def-content');
 
@@ -118,11 +114,9 @@ async function handleHover(e) {
 
     console.log("JLPT Extension: Japanese detected, querying server...");
 
-    // Get user level
     const storage = await browser.storage.local.get(['jlptLevel']);
     const level = storage.jlptLevel || 'N5';
 
-    // SEND MESSAGE TO BACKGROUND SCRIPT
     try {
         const response = await browser.runtime.sendMessage({
             type: 'analyze_text',

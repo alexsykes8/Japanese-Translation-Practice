@@ -80,25 +80,18 @@ class BookManagement:
 
         if filename.endswith('.tsv'):
             # Handle TSV files (Tatoeba format)
-            # Assumption: Tatoeba format is usually: ID \t Language \t Sentence
-            # Or sometimes just: ID \t Sentence
-            # We will try to find the Japanese sentence column.
+            # Tatoeba format ID \t Language \t Sentence
             with open(file_path, 'r', encoding='utf-8') as file:
                 # TSV reader
                 reader = csv.reader(file, delimiter='\t')
                 for row in reader:
                     if not row: continue
 
-                    # Heuristic to find the sentence: usually the longest string in the row
-                    # or specifically the 3rd column if standard Tatoeba export
-                    # Let's assume the standard JPN sentences export: ID, Language, Text
-                    # OR ID, Text.
 
                     text = ""
                     if len(row) == 3 and row[1] == 'jpn':
                         text = row[2]
                     elif len(row) >= 2:
-                        # Fallback: Assume the text is the last column or the longest one
                         text = row[-1]
 
                     if text:
@@ -150,7 +143,6 @@ class BookManagement:
             os.makedirs(self.directory_path)
 
         for filename in os.listdir(self.directory_path):
-            # NOW CHECKS FOR .tsv AS WELL
             if filename.endswith(".txt") or filename.endswith(".tsv"):
                 if not self._check_if_book_added(filename):
                     self._add_book(filename)

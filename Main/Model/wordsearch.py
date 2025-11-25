@@ -1,8 +1,5 @@
-import os
 
 import requests
-from lxml import etree
-import sqlite3
 
 
 class WordSearch:
@@ -72,36 +69,4 @@ class WordSearch:
             return ["No definition found."]
 
 
-    def create_db(self):
-        # Connect to SQLite (or create the file if it doesn't exist)
-        script_dir = os.path.dirname(os.path.abspath(__file__))
-        user_db_path = os.path.join(script_dir, "../dictionary_files/edict.db")
-        conn = sqlite3.connect(user_db_path)
-        cursor = conn.cursor()
-
-        # Create tables
-        cursor.execute('''
-        CREATE TABLE IF NOT EXISTS kanji (
-            id INTEGER PRIMARY KEY AUTOINCREMENT,
-            kanji TEXT NOT NULL
-        )''')
-
-        cursor.execute('''
-        CREATE TABLE IF NOT EXISTS reading (
-            id INTEGER PRIMARY KEY AUTOINCREMENT,
-            kanji_id INTEGER,
-            reading TEXT NOT NULL,
-            FOREIGN KEY (kanji_id) REFERENCES kanji(id)
-        )''')
-
-        cursor.execute('''
-        CREATE TABLE IF NOT EXISTS sense (
-            id INTEGER PRIMARY KEY AUTOINCREMENT,
-            kanji_id INTEGER,
-            pos TEXT,
-            gloss TEXT,
-            FOREIGN KEY (kanji_id) REFERENCES kanji(id)
-        )''')
-
-        return conn, cursor
 
