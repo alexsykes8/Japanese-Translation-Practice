@@ -536,3 +536,5 @@
 だ|is, are, am
 する|to do
 それ|that
+いい|good
+いる|to be (usu. of animate objects)

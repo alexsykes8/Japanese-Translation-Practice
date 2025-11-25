@@ -58,20 +58,25 @@ def hover_analyze():
     definitions, sentences = result
 
     processed_sentences = []
-    for s_data in sentences:  # Limit to top 5 to save bandwidth
-        sent_text = s_data[0].strip()
-        diff_words = user.get_difficult_words_in_sentence(sent_text)
 
-        # Filter out the target word from difficult words list
-        filtered_diff_words = [
-            {'word': w, 'level': l, 'def': d}
-            for w, l, d in diff_words
-            if w != target_word
-        ]
+    # Optimization: Only process difficult words for the first 5 sentences
+    for i, s_data in enumerate(sentences):
+        sent_text = s_data[0].strip()
+
+        diff_words = []
+        # Only analyze difficult words for the first 5 to keep response time fast
+        if i < 5:
+            raw_diff_words = user.get_difficult_words_in_sentence(sent_text)
+            # Filter out the target word
+            diff_words = [
+                {'word': w, 'level': l, 'def': d}
+                for w, l, d in raw_diff_words
+                if w != target_word
+            ]
 
         processed_sentences.append({
             'text': sent_text,
-            'difficult_words': filtered_diff_words
+            'difficult_words': diff_words
         })
 
     return jsonify({
