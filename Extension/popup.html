@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        body { width: 200px; padding: 10px; font-family: sans-serif; }
+        h3 { margin-top: 0; }
+        select, button { width: 100%; margin-top: 10px; padding: 5px; }
+        .status { color: green; margin-top: 5px; font-size: 0.8em; display: none; }
+    </style>
+</head>
+<body>
+    <h3>JLPT Settings</h3>
+    <label for="level">Your Level:</label>
+    <select id="level">
+        <option value="N5">N5 (Beginner)</option>
+        <option value="N4">N4</option>
+        <option value="N3">N3</option>
+        <option value="N2">N2</option>
+        <option value="N1">N1 (Advanced)</option>
+    </select>
+    <button id="save">Save</button>
+    <div id="status" class="status">Saved!</div>
+    <script src="popup.js"></script>
+</body>
+</html>

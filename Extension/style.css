@@ -1,0 +1,95 @@
+#jlpt-sentence-popup {
+    position: absolute;
+    z-index: 10000;
+    background: #2c3e50;
+    color: white;
+    padding: 12px;
+    border-radius: 6px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.3);
+    max-width: 400px;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 14px;
+    line-height: 1.5;
+    pointer-events: auto; /* Allow clicking buttons */
+}
+
+#jlpt-sentence-popup .header {
+    border-bottom: 1px solid #34495e;
+    padding-bottom: 8px;
+    margin-bottom: 8px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+#jlpt-sentence-popup .word {
+    font-size: 1.2em;
+    font-weight: bold;
+    color: #e67e22;
+    margin-right: 10px;
+}
+
+#jlpt-sentence-popup .controls {
+    display: flex;
+    align-items: center;
+    background: #34495e;
+    border-radius: 4px;
+    padding: 2px 5px;
+}
+
+#jlpt-sentence-popup .nav-btn {
+    cursor: pointer;
+    padding: 0 5px;
+    color: #ecf0f1;
+    font-weight: bold;
+    user-select: none;
+}
+
+#jlpt-sentence-popup .nav-btn:hover {
+    color: #3498db;
+}
+
+#jlpt-sentence-popup .sentence {
+    font-size: 1.1em;
+    margin-bottom: 8px;
+}
+
+/* Definition Section */
+#jlpt-sentence-popup .def-container {
+    background: rgba(0,0,0,0.2);
+    padding: 5px;
+    border-radius: 4px;
+    margin-bottom: 8px;
+    font-size: 0.9em;
+    color: #bdc3c7;
+}
+
+#jlpt-sentence-popup .reveal-btn {
+    cursor: pointer;
+    text-align: center;
+    color: #3498db;
+    font-weight: bold;
+    padding: 2px;
+}
+
+#jlpt-sentence-popup .reveal-btn:hover {
+    text-decoration: underline;
+    color: #5dade2;
+}
+
+#jlpt-sentence-popup .def-content {
+    /* Hidden by default via JS inline style */
+}
+
+#jlpt-sentence-popup .diff-words {
+    background: #2980b9;
+    padding: 8px;
+    border-radius: 4px;
+    font-size: 0.9em;
+}
+
+#jlpt-sentence-popup .dw-item {
+    display: block;
+    margin-top: 2px;
+}

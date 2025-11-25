@@ -1,0 +1,25 @@
+{
+  "manifest_version": 2,
+  "name": "JLPT Sentence Searcher",
+  "version": "1.0",
+  "description": "Hover over Japanese text to see example sentences and definitions.",
+  "permissions": [
+    "activeTab",
+    "storage",
+    "http://127.0.0.1:5000/*"
+  ],
+  "background": {
+    "scripts": ["background.js"]
+  },
+  "content_scripts": [
+    {
+      "matches": ["<all_urls>"],
+      "js": ["content.js"],
+      "css": ["style.css"]
+    }
+  ],
+  "browser_action": {
+    "default_popup": "popup.html",
+    "default_title": "JLPT Settings"
+  }
+}
